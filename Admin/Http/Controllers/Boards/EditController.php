@@ -40,9 +40,13 @@ class EditController extends Controller
      */
     public function post(EditRequest $request, Board $board)
     {
-        $board->update($request->only([
-            'title', 'order', 'description'
-        ]));
+        if ($board->title !== $request->title) {
+            $board->slug = $request->title;
+        }
+        $board->title = $request->title;
+        $board->order = $request->order;
+        $board->description = $request->description;
+        $board->save();
 
         return redirect()->route('admin.board.edit', $board)->with([
             'success' => 'Your changes were saved.',

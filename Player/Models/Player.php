@@ -175,7 +175,9 @@ class Player extends Model implements Contract
      */
     public function scopeGetOnlineList($query)
     {
-        return $query->has('playerOnline')->get();
+        $hideGroupIds = config('bitaac.online.hidePlayersWithGroupIdFromOnlinelist', []);
+
+        return $query->whereNotIn('group_id', $hideGroupIds)->has('playerOnline')->get();
     }
 
     /**

@@ -314,7 +314,7 @@ if (! function_exists('getOnlinePlayers')) {
      */
     function getOnlinePlayers()
     {
-        return Cache::remember('bitaac:players:online', 10, function () {
+        return Cache::remember('bitaac:players:online', now()->addSeconds(10), function () {
             return app('player')->getOnlineList();
         });
     }

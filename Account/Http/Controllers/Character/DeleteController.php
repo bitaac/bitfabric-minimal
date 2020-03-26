@@ -2,6 +2,7 @@
 
 namespace Bitaac\Account\Http\Controllers\Character;
 
+use Bitaac;
 use Carbon\Carbon;
 use Bitaac\Laravel\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
@@ -42,9 +43,12 @@ class DeleteController extends Controller
     {
         $user = $this->auth->user();
 
-        if (! $this->auth->validate(['name' => $user->name, 'password' => $request->get('password')])) {
+        if (! $this->auth->validate([
+            Bitaac::getAccountNameField() => $user->getName(),
+            Bitaac::getAccountPasswordField() => $request->get('password')
+        ])) {
             return back()->withErrors([
-                'error' => 'Password do not match.',
+                'password' => ['Password do not match.'],
             ])->withInput();
         }
 
