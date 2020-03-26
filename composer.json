@@ -1,0 +1,42 @@
+{
+    "name": "bitaac/bitfabric",
+    "authors": [
+        {
+            "name": "Kristoffer Eklund",
+            "email": "kristoffereklund1@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/support": "5.8.*",
+        "eklundkristoffer/seedster": "^3.0",
+        "pragmarx/google2fa": "^1.0",
+        "bacon/bacon-qr-code": "~1.0",
+        "doctrine/dbal": "^2.5",
+        "paysterify/paysterify": "0.1.*",
+        "paysterify/paypal": "0.1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bitaac\\": ""
+        },
+        "files": [
+            "Core/helpers.php"
+        ],
+        "classmap": [
+            "Laravel/database/seeds",
+            "Laravel/database/factories"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Bitaac\\Core\\Providers\\BitfabricServiceProvider"
+            ]
+        },
+        "branch-alias": {
+            "dev-master": "3.0-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
